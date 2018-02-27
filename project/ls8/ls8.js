@@ -20,15 +20,22 @@ function processFile(content, cpu, onComplete) {
         // !!! IMPLEMENT ME
 
         // Strip comments
+        let commentIndex = line.indexOf('#');
+
+        if (commentIndex !== -1) {
+            line = line.substr(0, commentIndex);
+        }
 
         // Remove whitespace from either end of the line
-
+        line = line.trim();
         // Ignore empty lines
-
+        if (line.length === 0) {
+            continue;
+        }
         // Convert from binary string to numeric value
-
+        let val = parsInt(line, 2);
         // Store in the CPU with the .poke() function
-
+        cpu.poke(curAddr, val);
         // And on to the next one
         curAddr++;
     }

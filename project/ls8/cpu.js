@@ -41,6 +41,7 @@ class CPU {
         bt[HLT] = this.HLT;
         // !!! IMPLEMENT ME
         // LDI
+        
         // MUL
         // PRN
 
