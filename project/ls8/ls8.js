@@ -33,7 +33,7 @@ function processFile(content, cpu, onComplete) {
             continue;
         }
         // Convert from binary string to numeric value
-        let val = parsInt(line, 2);
+        let val = parseInt(line, 2);
         // Store in the CPU with the .poke() function
         cpu.poke(curAddr, val);
         // And on to the next one

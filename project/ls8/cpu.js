@@ -41,6 +41,7 @@ class CPU {
         bt[HLT] = this.HLT;
         // !!! IMPLEMENT ME
         // LDI
+        bt[LDI] = this.LDI;
         
         // MUL
         // PRN
@@ -92,6 +93,7 @@ class CPU {
     tick() {
         // Load the instruction register (OR) from the current PC
         // !!! IMPLEMENT ME
+        this.reg.IR = this.ram.read(this.reg.PC);
 
         // Debugging output
         //console.log(`${this.reg.PC}: ${this.reg.IR.toString(2)}`);
@@ -99,11 +101,16 @@ class CPU {
         // Based on the value in the Instruction Register, locate the
         // appropriate hander in the branchTable
         // !!! IMPLEMENT ME
-        // let handler = ...
+        let handler = this.branchTable[this.reg.IR];
 
         // Check that the handler is defined, halt if not (invalid
         // instruction)
         // !!! IMPLEMENT ME
+        if (handler === undefined) {
+            console.log(`Error: invalid instruction`);
+            this.stopClock();
+            return;
+        }
 
         // We need to use call() so we can set the "this" value inside
         // the handler (otherwise it will be undefined in the handler)
@@ -111,6 +118,8 @@ class CPU {
 
         // Increment the PC register to go to the next instruction
         // !!! IMPLEMENT ME
+        let operandCount = (this.reg.IR >> 6) & ob11;
+        let 
     }
 
     // INSTRUCTION HANDLER CODE:
@@ -119,7 +128,7 @@ class CPU {
      * HLT
      */
     HLT() {
-        // !!! IMPLEMENT ME
+        this.stopClock();
     }
 
     /**
@@ -132,8 +141,8 @@ class CPU {
     /**
      * MUL R,R
      */
-    MUL() {
-        // !!! IMPLEMENT ME
+    MUL(regA, regB) {
+        this.alu('MUL', regA, regB)
     }
 
     /**
