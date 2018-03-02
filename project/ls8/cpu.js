@@ -6,7 +6,7 @@ const fs = require('fs');
 
 // Instructions
 
-const HLT  = 0b00011011; // Halt CPU
+const HLT  = 0b00000001; // Halt CPU
 // !!! IMPLEMENT ME
 // LDI
 // MUL
@@ -91,7 +91,7 @@ class CPU {
      * Advances the CPU one cycle
      */
     tick() {
-        // Load the instruction register (OR) from the current PC
+        // Load the instruction register (IR) from the current PC
         // !!! IMPLEMENT ME
         this.reg.IR = this.ram.read(this.reg.PC);
 
@@ -134,7 +134,7 @@ class CPU {
     /**
      * LDI R,I
      */
-    LDI() {
+    LDI(reg, value) {
         // !!! IMPLEMENT ME
     }
 
@@ -148,7 +148,7 @@ class CPU {
     /**
      * PRN R
      */
-    PRN() {
+    PRN(regA) {
         // !!! IMPLEMENT ME
     }
 }
